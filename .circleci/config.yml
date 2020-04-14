@@ -83,11 +83,11 @@ workflows:
       - test:
           requires:
             - install-dependencies
-      # - publish-npm-package:
-      #     context: reaction-publish-semantic-release
-      #     requires:
-      #       - eslint
-      #       - test
-      #     filters:
-      #       branches:
-      #         only: trunk
+      - publish-npm-package:
+          context: reaction-publish-semantic-release
+          requires:
+            - eslint
+            - test
+          filters:
+            branches:
+              only: trunk
