@@ -2,8 +2,8 @@
   "name": "@reactioncommerce/admin-plugin-products",
   "version": "0.0.0-development",
   "description": "Reaction admin products plugin",
-  "homepage": "https://github.com/reactioncommerce/admin-plugin-products",
-  "repository": "https://github.com/reactioncommerce/admin-plugin-products",
+  "homepage": "https://github.com/reactioncommerce/admin-products",
+  "repository": "https://github.com/reactioncommerce/admin-products",
   "author": {
     "name": "Reaction Commerce",
     "email": "engineering@reactioncommerce.com",
