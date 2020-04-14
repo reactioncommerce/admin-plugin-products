@@ -13,6 +13,7 @@
   "scripts": {
     "build:plugin": "cd package && reaction-build-plugin",
     "build:app": "webpack --config ./node_modules/@reactioncommerce/admin-core/config/webpack.prod.js",
+    "lint": "eslint ./package/src",
     "start": "reaction-dev-server",
     "test": "jest ./package/src",
     "test:watch": "jest --watch ./package/src",
