@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-// import { Meteor } from "meteor/meteor";
 import { useTranslation } from "react-i18next";
 import useCurrentShopId from "@reactioncommerce/admin-core/hooks/useCurrentShopId";
 import { useSnackbar } from "notistack";
@@ -17,15 +16,6 @@ import PublishProductsToCatalogMutation from "../graphql/mutations/publishProduc
 import UpdateProductMutation from "../graphql/mutations/updateProduct";
 import UpdateProductVariantMutation from "../graphql/mutations/updateProductVariant";
 import UpdateProductVariantPricesMutation from "../graphql/mutations/updateProductVariantPrices";
-
-// /**
-//  * Restore an archived product
-//  * @param {Object} product Product object
-//  * @returns {undefined} No return
-//  */
-// export function handleProductRestore(product) {
-//   Meteor.call("products/updateProductField", product._id, "isDeleted", false);
-// }
 
 /**
  * @method useProduct
@@ -101,7 +91,7 @@ function useProduct(args = {}) {
     } catch (error) {
       enqueueSnackbar(error.message, { variant: "error" });
     }
-  }, [product, publishProductsToCatalog, refetchProduct, enqueueSnackbar]);
+  }, [product, publishProductsToCatalog, refetchProduct, enqueueSnackbar, t]);
 
   const onArchiveProduct = useCallback(async (productLocal, redirectUrl) => {
     try {
@@ -115,7 +105,8 @@ function useProduct(args = {}) {
     enqueueSnackbar,
     history,
     archiveProducts,
-    shopId
+    shopId,
+    t
   ]);
 
 
@@ -126,7 +117,7 @@ function useProduct(args = {}) {
     } catch (error) {
       enqueueSnackbar(t("productDetailEdit.cloneProductFail"), { variant: "error" });
     }
-  }, [cloneProducts, enqueueSnackbar, shopId]);
+  }, [cloneProducts, enqueueSnackbar, shopId, t]);
 
   const onCreateVariant = useCallback(async ({
     parentId: parentIdLocal = product._id,
@@ -165,7 +156,7 @@ function useProduct(args = {}) {
     } catch (error) {
       enqueueSnackbar(t("productDetailEdit.addVariantFail"), { variant: "error" });
     }
-  }, [createProductVariant, enqueueSnackbar, history, product, refetchProduct, shopId]);
+  }, [createProductVariant, enqueueSnackbar, history, product, refetchProduct, shopId, t]);
 
   const onToggleProductVisibility = useCallback(async () => {
     try {
@@ -189,6 +180,7 @@ function useProduct(args = {}) {
     enqueueSnackbar,
     product,
     shopId,
+    t,
     updateProduct
   ]);
 
@@ -223,6 +215,7 @@ function useProduct(args = {}) {
     enqueueSnackbar,
     product,
     shopId,
+    t,
     updateProduct
   ]);
 
@@ -257,6 +250,7 @@ function useProduct(args = {}) {
     enqueueSnackbar,
     product,
     shopId,
+    t,
     updateProduct
   ]);
 
@@ -281,7 +275,7 @@ function useProduct(args = {}) {
     } catch (error) {
       enqueueSnackbar(t("productVariant.updateVariantFail"), { variant: "error" });
     }
-  }, [enqueueSnackbar, shopId, updateProductVariant]);
+  }, [enqueueSnackbar, shopId, t, updateProductVariant]);
 
   const onUpdateProductVariantPrices = useCallback(async ({
     variantPrices: variantPricesLocal,
@@ -307,7 +301,7 @@ function useProduct(args = {}) {
     } catch (error) {
       enqueueSnackbar(t("productVariant.updateVariantPricesFail"), { variant: "error" });
     }
-  }, [enqueueSnackbar, shopId, updateProductVariantPrices]);
+  }, [enqueueSnackbar, shopId, updateProductVariantPrices, t]);
 
   const onToggleVariantVisibility = useCallback(async ({
     variant: variantLocal,
@@ -330,7 +324,7 @@ function useProduct(args = {}) {
     } catch (error) {
       enqueueSnackbar(t("productDetailEdit.updateProductFieldFail"), { variant: "error" });
     }
-  }, [enqueueSnackbar, shopId, updateProductVariant]);
+  }, [enqueueSnackbar, shopId, updateProductVariant, t]);
 
   const onCloneProductVariants = useCallback(async ({
     variantIds: variantIdsLocal,
@@ -353,7 +347,7 @@ function useProduct(args = {}) {
     } catch (error) {
       enqueueSnackbar(t("productDetailEdit.cloneProductFail"), { variant: "error" });
     }
-  }, [cloneProductVariants, enqueueSnackbar, refetchProduct, shopId]);
+  }, [cloneProductVariants, enqueueSnackbar, refetchProduct, shopId, t]);
 
   const onArchiveProductVariants = useCallback(async ({
     variantIds: variantIdsLocal,
@@ -389,7 +383,7 @@ function useProduct(args = {}) {
     } catch (error) {
       enqueueSnackbar(t("productDetailEdit.archiveProductVariantsFail"), { variant: "error" });
     }
-  }, [archiveProductVariants, enqueueSnackbar, history, option, product, refetchProduct, shopId, variant]);
+  }, [archiveProductVariants, enqueueSnackbar, history, option, product, refetchProduct, shopId, t, variant]);
 
   // Convert the social metadata to a format better suited for forms
   if (product && Array.isArray(product.socialMetadata)) {
@@ -412,7 +406,7 @@ function useProduct(args = {}) {
     onUpdateProduct,
     onUpdateProductVariantPrices,
     option,
-    onRestoreProduct: () => {},
+    onRestoreProduct: () => {}, // TODO: implement product archive restore function
     onToggleProductVisibility,
     onToggleVariantVisibility,
     onUpdateProductVariant,
