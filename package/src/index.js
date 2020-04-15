@@ -1,5 +1,6 @@
 import React from "react";
 import CubeIcon from "mdi-material-ui/Cube";
+import { FileRecord } from "@reactioncommerce/file-collections";
 import ProductsTable from "./components/ProductsTable";
 import ProductDetail from "./layouts/ProductDetail";
 import ProductHeader from "./blocks/ProductHeader";
@@ -15,10 +16,20 @@ import VariantPricesForm from "./blocks/VariantPricesForm";
 // import VariantTaxForm from "./blocks/VariantTaxForm";
 import VariantMediaForm from "./blocks/VariantMediaForm";
 
-
-
+/**
+ * Register plugin
+ * @param {Object} params Utils for registering features of the plugin
+ * @returns {undefined}
+ */
 export default function plugin({ registerRoute, registerBlock }) {
+  // TODO: This should live in a media plugin
+  // Settings for file uploads
+  FileRecord.downloadEndpointPrefix = "/assets/files";
+  FileRecord.uploadEndpoint = "/assets/uploads";
+  FileRecord.absoluteUrlPrefix = process.env.PUBLIC_FILES_BASE_URL;
 
+
+  // Register routes
   registerRoute({
     LayoutComponent: null,
     MainComponent: ProductDetail,
@@ -152,5 +163,4 @@ export default function plugin({ registerRoute, registerBlock }) {
   //   component: VariantTaxForm,
   //   priority: 50
   // });
-
 }

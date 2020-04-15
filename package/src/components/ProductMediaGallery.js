@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import gql from "graphql-tag";
 import PropTypes from "prop-types";
-// import Logger from "/client/modules/logger";
 import { useTranslation } from "react-i18next";
-// import { Components } from "@reactioncommerce/reaction-components";
 import { useMutation } from "@apollo/react-hooks";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -11,11 +9,11 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import { useConfirmDialog } from "@reactioncommerce/catalyst";
+import Logger from "@reactioncommerce/admin-core/utils/logger";
 import { useSnackbar } from "notistack";
 import useProduct from "../hooks/useProduct";
 import ProductMediaItem from "./ProductMediaItem";
-
-const Logger = console;
+import MediaUploader from "./MediaUploader";
 
 const archiveMediaRecordMutation = gql`
   mutation ArchiveMediaRecord($input: ArchiveMediaRecordInput!) {
@@ -158,13 +156,13 @@ function ProductMediaGallery(props) {
           {editable &&
             <TableRow>
               <TableCell colSpan={3}>
-                {/* <Components.MediaUploader
+                <MediaUploader
                   canUploadMultiple
                   metadata={getFileMetadata}
                   onError={onUploadError}
                   refetchProduct={refetchProduct}
                   shopId={shopId}
-                /> */}
+                />
               </TableCell>
             </TableRow>
           }

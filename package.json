@@ -13,6 +13,7 @@
   "scripts": {
     "build:plugin": "cd package && reaction-build-plugin",
     "build:app": "webpack --config ./node_modules/@reactioncommerce/admin-core/config/webpack.prod.js",
+    "lint": "eslint ./package/src",
     "start": "reaction-dev-server",
     "test": "jest ./package/src",
     "test:watch": "jest --watch ./package/src",
@@ -22,7 +23,7 @@
     "@commitlint/cli": "^8.3.5",
     "@material-ui/core": "^4.9.7",
     "@material-ui/lab": "^4.0.0-alpha.46",
-    "@reactioncommerce/admin-core": "^1.3.0",
+    "@reactioncommerce/admin-core": "^1.3.2",
     "@reactioncommerce/api-utils": "^1.10.0",
     "@reactioncommerce/catalyst": "^1.19.1",
     "husky": "^4.2.3",

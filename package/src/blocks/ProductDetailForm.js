@@ -75,12 +75,14 @@ const ProductDetailForm = React.forwardRef((props, ref) => {
 
   const {
     onUpdateProduct,
-    product,
-    shopId
+    product
+    // shopId
   } = useProduct();
 
+  // TODO: revisit generate sitemaps
   // const { generateSitemaps } = useGenerateSitemaps(shopId);
-  const generateSitemaps = () => {}
+  const generateSitemaps = () => {};
+
   const {
     openDialog: openGenerateSitemapsConfirmDialog,
     ConfirmDialog: GenerateSitemapsConfirmDialog

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Blocks } from "@reactioncommerce/admin-core";
-import ContentLayoutTwoColumn from "@reactioncommerce/admin-core/ContentLayoutTwoColumn"
+import ContentLayoutTwoColumn from "@reactioncommerce/admin-core/ContentLayoutTwoColumn";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {
   Box,

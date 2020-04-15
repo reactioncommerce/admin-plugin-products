@@ -20,8 +20,8 @@ import getPDPUrl from "../utils/getPDPUrl";
 import StatusIconCell from "./DataTable/StatusIconCell";
 import MediaCell from "./DataTable/MediaCell";
 import PublishedStatusCell from "./DataTable/PublishedStatusCell";
-// import FilterByFileCard from "./FilterByFileCard";
-// import TagSelector from "./TagSelector";
+import FilterByFileCard from "./FilterByFileCard";
+import TagSelector from "./TagSelector";
 
 const encodeOpaqueId = (id) => id;
 const decodeOpaqueId = (id) => id;
@@ -119,7 +119,7 @@ function ProductsTable() {
       Cell: ({ row }) => <StatusIconCell row={row} />,
       id: "isVisible"
     }
-  ], []);
+  ], [t]);
 
 
   const onFetchData = useCallback(async ({ globalFilter, manualFilters, pageIndex, pageSize }) => {
@@ -168,7 +168,7 @@ function ProductsTable() {
 
   const labels = useMemo(() => ({
     globalFilterPlaceholder: t("admin.productTable.filters.placeholder")
-  }), []);
+  }), [t]);
 
   const dataTableProps = useDataTable({
     columns,
@@ -428,7 +428,7 @@ function ProductsTable() {
         { count: data.archiveProducts.products.length }
       ));
     }
-  }], [apolloClient, enqueueSnackbar, isFilterByFileVisible, isTagSelectorVisible, refetch, selectedRows, shopId]);
+  }], [apolloClient, enqueueSnackbar, isFilterByFileVisible, isTagSelectorVisible, refetch, selectedRows, shopId, t]);
 
   const classes = useStyles();
   const selectedProducts = selectedRows.length ? `${selectedRows.length} selected` : "";
@@ -440,7 +440,7 @@ function ProductsTable() {
 
   return (
     <Grid container spacing={3}>
-      {/* <FilterByFileCard
+      <FilterByFileCard
         isFilterByFileVisible={isFilterByFileVisible}
         files={files}
         getInputProps={getInputProps}
@@ -454,7 +454,7 @@ function ProductsTable() {
         setVisibility={setTagSelectorVisibility}
         selectedProductIds={selectedRows}
         shopId={shopId}
-      /> */}
+      />
       {(!isTagSelectorVisible && !isFilterByFileVisible) &&
         <Grid item sm={12}>
           <Button color="primary" variant="contained" onClick={handleCreateProduct}>

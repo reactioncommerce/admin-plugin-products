@@ -165,7 +165,7 @@ export default function VariantList() {
                   className: classes.listItemPrimaryText
                 }}
                 primary={variant.optionTitle || variant.title || "Untitled"}
-                secondary={t(variant.isVisible ? "app.visible" : "app.hidden") }
+                secondary={t(variant.isVisible ? "app.visible" : "app.hidden")}
               />
               <ListItemSecondaryAction className={classes.listItemAction}>
                 <VariantItemAction
@@ -208,7 +208,8 @@ export default function VariantList() {
     onToggleVariantVisibility,
     onCloneProductVariants,
     onRestoreProduct,
-    history
+    history,
+    t
   ]);
 
   return (

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
-// import ProductMediaGallery from "../components/ProductMediaGallery";
+import ProductMediaGallery from "../components/ProductMediaGallery";
 import useProduct from "../hooks/useProduct";
 
 /**
@@ -28,13 +28,13 @@ function VariantMediaForm() {
     <Card>
       <CardHeader title={t("admin.productAdmin.mediaGallery")} />
       <CardContent>
-        {/* <ProductMediaGallery
+        <ProductMediaGallery
           editable={true}
           media={media}
           productId={product._id}
           variantId={variantId}
           shopId={shopId}
-        /> */}
+        />
       </CardContent>
     </Card>
   );
