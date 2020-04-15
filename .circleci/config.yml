@@ -67,7 +67,7 @@ jobs:
 
     steps:
       - checkout
-      - run: cd package && npm ci
+      - run: npm ci && (cd package && npm ci)
       - run: npm run build:plugin
       - run: cd package/dist && npx semantic-release
 
